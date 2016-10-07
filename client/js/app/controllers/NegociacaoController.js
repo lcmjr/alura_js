@@ -1,15 +1,26 @@
 class NegociacaoController{
+
+    constructor(){
+        let $ = document.querySelector.bind(document);
+
+        this._inputdata = $("#data");
+        this._inputquantidade = $("#quantidade");
+        this._inputvalor = $("#valor");
+    }
+
     adiciona(event){
         event.preventDefault();
 
-        let $ = document.querySelector.bind(document);
-        
-        let inputdata = $("#data");
-        let inputquantidade = $("#quantidade");
-        let inputvalor = $("#valor");
-
-        console.log(inputdata.value);
-        console.log(inputquantidade.value);
-        console.log(inputvalor.value);
+        let data = new Date(...this._inputdata.value.split('-')
+            .map(function(item,indice){
+                //0%1=0, 1%2=1 2%2=0 assim se evita o erro para corrigir o array do mes
+                return item - indice % 2;
+            }));
+        console.log(data);
+        /*let negociacao = new Negociacao(
+            data,
+            this._inputquantidade.value,
+            this._inputvalor.value);
+        console.log(negociacao);*/
     }
 }
